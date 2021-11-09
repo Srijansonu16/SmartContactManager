@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="NormalUser/Base::layout(~{::section})">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <title>Add Contact</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="my-card">
+                    <div  th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="danger">
+                        <p th:text="${session.message.message}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <h1 style="color:white;" class="text-center">Update your profile !!</h1>
+                    <form style="color:white" th:action="@{/user/DoUser_Update}" method="post" th:object="${user}">
+                        <input type="hidden" th:text="${user.id}" name="id">
+
+                        <div class="form-group">
+                            <label for="name"><h3>Name</h3></label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   th:value="${user.name}"
+                                   placeholder="Enter your name"
+                                   required>
+                            <p  style="color: white" th:each="e:${#fields.errors('name')}" th:text="${e}"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="Email1"><h3>Email</h3></label>
+                            <input type="email"
+                                   class="form-control"
+                                   id="Email1"
+                                   name="email"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Enter your email"
+                                   th:value="${user.email}"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="About"><h3>About</h3></label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="About"
+                                   name="about"
+                                   aria-describedby="emailHelp"
+                                   placeholder="type your text here"
+                                   th:value="${user.about}">
+                        </div>
+                        <div class="form-group">
+                            <label for="Role"><h3>Role</h3></label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="Role"
+                                   name="role"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Add your role "
+                                   th:value="${user.role}"
+                                   required>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input"  name="check" id="exampleCheck1" required>
+                            <label class="form-check-label" for="exampleCheck1" >Check me out</label>
+                        </div>
+                        <div class="container text-center">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="reset" class="btn btn-warning">Reset</button>
+                        <a href="/user/profile" class="btn btn-success">Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+</body>
+</html>

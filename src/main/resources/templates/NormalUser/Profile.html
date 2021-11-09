@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="NormalUser/Base::layout(~{::section})">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+<section>
+    <div class="contx mt-3 mr-10 ml-10">
+
+        <div  th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="danger">
+            <p th:text="${session.message.message}"></p>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+        </div>
+
+    <h1>Name : <span style="color: antiquewhite" th:text="${user.name}"></span></h1>
+    <h1>Email : <span style="color: antiquewhite"  th:text="${user.email}"></span></h1>
+    <h1>Role : <span style="color: antiquewhite"  th:text="${user.role}"></span></h1>
+    <h1>About : <span style="color: antiquewhite"  th:text="${user.about}"></span></h1>
+    <h1>IS Enabled : <span  style="color: antiquewhite"  th:text="${user.isEnabled()}"></span></h1>
+    </div>
+<div class="conainer text-center">
+<!-- delete -->
+    <a href="/user/deleteuser" class="btn btn-danger"> delete</a>
+<!-- update -->
+    <a href="#" th:href="@{'/user/update_user/'+${user.id}}" class="btn btn-warning"> update</a>
+    <!--  back  -->
+    <a href="/user/index" class="btn btn-success"> back </a>
+</div>
+</section>
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+</body>
+</html>
