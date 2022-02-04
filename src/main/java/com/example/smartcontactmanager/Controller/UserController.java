@@ -70,6 +70,7 @@ public class UserController {
     public String viewContact(@PathVariable("page") Integer page, Model model,Principal principal){
         model.addAttribute("title","View_Contacts");
 
+
         String name = principal.getName();
         User user = this.userRepository.getUserByUserName(name);
         PageRequest pageRequest = PageRequest.of(page, 3);

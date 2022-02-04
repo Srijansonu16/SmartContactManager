@@ -21,7 +21,7 @@ public class HomeController {
     @Autowired
     public UserRepository userRepository;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String Home(Model model){
         System.out.println("home..........");
         model.addAttribute("title" , "Home_ContactController");
